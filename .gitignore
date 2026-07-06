@@ -2,5 +2,5 @@
 *.pyc
 __pycache__/
 game.db
-venv/
+.venv/
 .DS_Store

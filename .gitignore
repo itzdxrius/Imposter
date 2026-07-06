@@ -1,0 +1,6 @@
+.env
+*.pyc
+__pycache__/
+game.db
+venv/
+.DS_Store

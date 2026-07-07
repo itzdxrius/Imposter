@@ -1,14 +1,12 @@
 import os 
 import random
-from pathlib import Path
+from typing import Optional, Dict, Any
 import requests
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
-env_path = BASE_DIR / ".env"
+load_dotenv(find_dotenv())
 
-load_dotenv(dotenv_path=env_path)
 
 PEXELS_API_KEY = os.getenv("PEXELS_API_KEY")
 SEARCH_URL = "https://api.pexels.com/v1/search"

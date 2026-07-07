@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Imposter/lobby</title>
+        <link rel="stylesheet" href={{ url_for('static', filename='css/lobby.css')}}>
+    </head>
+    <body>
+        <h1>Imposter</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>players</th>
+                </tr>
+            </thead>
+            <tbody id="player-list">
+                {% for player in players %}
+                    <tr>
+                        <td>{{ player.name }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button id="start-button">Start Game</button>
+        <script src={{ url_for('static', filename='js/buttons.js')}}></script>
+    </body>
+</html>

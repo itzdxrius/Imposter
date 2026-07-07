@@ -31,6 +31,9 @@ def create_app():
     from app.auth.routes import auth_bp
     app.register_blueprint(auth_bp)
 
+    from app.pages.page_routes import pages_bp
+    app.register_blueprint(pages_bp)
+
     with app.app_context():
         db.create_all()
 

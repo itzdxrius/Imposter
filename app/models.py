@@ -36,7 +36,7 @@ class Friendship(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     __table_args__ = (
-        db.UniqueConstraint("user1_id", "user2_id", name="unique_friendship"),
+        db.UniqueConstraint("user_id", "friend_id", name="unique_friendship"),
     )
 
 class Game(db.Model):

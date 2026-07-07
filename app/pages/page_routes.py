@@ -9,3 +9,15 @@ def signin():
 @pages_bp.route('/home')
 def home():
     return render_template('home_page.html')
+
+@pages_bp.route('/lobby')
+def lobby():
+    return render_template('lobby.html')
+
+@pages_bp.route('/game')
+def game():
+    return render_template('game.html')
+
+@pages_bp.route('/results')
+def results():
+    return render_template('results.html')

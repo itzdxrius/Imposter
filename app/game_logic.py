@@ -27,6 +27,8 @@ def assign_word():
     return random.choice(WORD_LIST)
 
 def assign_imposter(player_ids):
+    if not player_ids:
+        raise ValueError("Player IDs list cannot be empty.")
     return random.choice(player_ids)
 
 def update_user_stats(user, won):
@@ -48,7 +50,7 @@ def assign_imposter_for_room(room):
         if player.id == imposter:
             return player
 
-def update_stats_for_players(player, won):
+def update_stats_for_player(player, won):
     if player.user is None:
         return None
     update_user_stats(player.user, won)

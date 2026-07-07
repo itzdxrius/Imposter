@@ -5,7 +5,9 @@
         <link rel="stylesheet" href={{ url_for('static', filename='css/home_page.css')}}>
     </head>
     <body>
-        <button id="profile-button">P</button>
+        <button id="profile-button">
+            <img src={{ user.picture }} alt="Profile Icon">
+        </button>
         <h1>Welcome to Imposter</h1>
         <button id="join-button">Join Game</button>
         <script src={{ url_for('static', filename='js/buttons.js')}}></script>

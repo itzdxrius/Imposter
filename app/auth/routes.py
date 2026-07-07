@@ -6,7 +6,7 @@ auth_bp = Blueprint("auth", __name__, url_prefix="/auth")
 
 @auth_bp.route("/login")
 def login():
-    redirect_uri = "https://mileviolin-zebrapizza-4000.codio.io/proxy/5000/auth/callback"
+    redirect_uri = "http://127.0.0.1:5000/auth/callback"
     return oauth.google.authorize_redirect(redirect_uri)
 
 @auth_bp.route("/callback")
@@ -27,12 +27,9 @@ def auth_callback():
         db.session.commit()
 
     session["user_id"] = user.id
-    return jsonify({
-        "message": "Logged in successfully",
-        "user": {"id": user.id, "name": user.name, "email": user.email}
-    })
+    return redirect(url_for("pages.home"))
 
 @auth_bp.route("/logout")
 def logout():
     session.clear()
-    return jsonify({"message": "Logged out"})
+    return redirect(url_for("pages.signin"))

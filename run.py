@@ -11,5 +11,6 @@ round_data = get_reveal_image(selected_category)
 if round_data:
   print(f"Successfully loaded reveal image for: {selected_category}")
 if __name__ == "__main__":
-    app.run(debug=True)
+  app.run(host="0.0.0.0", port=5000, debug=True)
+    #app.run(debug=True)
 

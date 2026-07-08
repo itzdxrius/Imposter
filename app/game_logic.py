@@ -1,5 +1,8 @@
 import random
+from app.models import Round
 
+#pexels functiion for image api
+from app.pexels_api.pexels_client import get_reveal_image
 WORD_LIST = [
     "Beach", "Pizza", "Hospital", "Guitar", "Volcano",
     "Library", "Astronaut", "Umbrella", "Castle", "Waterfall",
@@ -39,18 +42,31 @@ def update_user_stats(user, won):
 
 def assign_word_for_round(room):
     word = assign_word()
-    return Round(room_id=room.id, query=word)
+
+    pexels_data = get_reveal_image(word)
+
+    #extracts only the image link for the frontend
+    image_url = pexels_data.get('reveal_image')
+
+    return Round(room_id=room.id, query=word, reveal_image_url=image_url)
 
 def assign_imposter_for_room(room):
     players = list(room.players)
-    imposter = assign_imposter([player.id for player in players])
+    if not players:
+      return None
+    imposter_id = assign_imposter([player.id for player in players])
+
+    imposter_player = None
     for player in players:
-        player.is_imposter = (player.id == imposter)
-    for player in players:
-        if player.id == imposter:
-            return player
+      is_imposter = (player.id == imposter_id)
+      player.is_imposter = is_imposter
+
+      if is_imposter:
+        imposter_player = player
+
+    return imposter_player
 
 def update_stats_for_player(player, won):
     if player.user is None:
         return None
-    update_user_stats(player.user, won)
+    return update_user_stats(player.user, won)

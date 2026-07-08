@@ -9,12 +9,14 @@
         <table>
             <thead>
                 <tr>
+                    <th>profile picture</th>
                     <th>players</th>
                 </tr>
             </thead>
             <tbody id="player-list">
                 {% for player in players %}
                     <tr>
+                        <td><img src={{ player.user.picture }} alt="Profile Picture"></td>
                         <td>{{ player.name }}</td>
                     </tr>
                 {% endfor %}

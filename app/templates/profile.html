@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Imposter/user-profile</title>
+        <link rel="stylesheet" href={{ url_for('static', filename='css/profile.css')}}>
+    </head>
+    <body>
+        <button id="profile-back-button">
+            <img src='' alt="Back Icon">
+        </button>
+        <img src={{ user.picture }} alt="Profile Picture" id="profile-picture">
+        <table id="profile-info">
+            <tbody>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ user.name }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <th>Games Played</th>
+                    <td>{{ user.games_played }}</td>
+                </tr>
+                <tr>
+                    <th>Games Won</th>
+                    <td>{{ user.games_won }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <script src={{ url_for('static', filename='js/buttons.js')}}></script>
+    </body>
+</html>

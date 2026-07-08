@@ -6,7 +6,7 @@ auth_bp = Blueprint("auth", __name__, url_prefix="/auth")
 
 @auth_bp.route("/login")
 def login():
-    redirect_uri = "http://127.0.0.1:5000/auth/callback"
+    redirect_uri = url_for("auth.auth_callback", _external=True)
     return oauth.google.authorize_redirect(redirect_uri)
 
 @auth_bp.route("/callback")

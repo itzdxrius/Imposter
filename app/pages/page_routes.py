@@ -1,6 +1,6 @@
 import uuid
 
-from flask import Blueprint, render_template, session, redirect, url_for
+from flask import Blueprint, app, render_template, session, redirect, url_for
 from app.models import Player, Room, User
 from app import db
 
@@ -11,6 +11,9 @@ def get_current_user():
     if user_id:
         return User.query.get(user_id)
     return None
+
+def get_current_room():
+    return Room.query.filter_by(code="GLOB").first()
 
 @pages_bp.route('/')
 def signin():
@@ -48,15 +51,30 @@ def lobby():
 
     current_players = Player.query.filter_by(room_id=room.id).all()
 
-    return render_template('lobby.html', players=current_players)
+    return render_template('lobby.html', room=room,players=current_players)
 
 @pages_bp.route('/game')
 def game():
-    return render_template('game_template.html')
+    user = get_current_user()
+    if not user:
+        return redirect(url_for('pages.signin'))
+    room = get_current_room()
+    if not room or not room.rounds:
+        return redirect(url_for('pages.lobby'))
+    current_round = room.rounds[-1]
+    player = Player.query.filter_by(user_id=user.id, room_id=room.id).first()
+    if not player:
+        return redirect(url_for('pages.lobby'))
+    if player.is_imposter:
+        return render_template('game_template.html', round=current_round)
+    return render_template('game_template.html', round=current_round, word=current_round.query)
 
 @pages_bp.route('/results')
 def results():
-    return render_template('results.html')
+    room = get_current_room()
+    if not room or not room.rounds:
+        return redirect(url_for('pages.lobby'))
+    return render_template('results.html', round=room.rounds[-1])
 
 @pages_bp.route('/profile')
 def profile():
@@ -67,4 +85,14 @@ def profile():
 
 @pages_bp.route('/vote')
 def vote():
-    return render_template('vote.html')
+    user = get_current_user()
+    if not user:
+        return redirect(url_for('pages.signin'))
+    room = get_current_room()
+    if not room or not room.rounds:
+        return redirect(url_for('pages.lobby'))
+    current_round = room.rounds[-1]
+    player = Player.query.filter_by(user_id=user.id, room_id=room.id).first()
+    if not player:
+        return redirect(url_for('pages.lobby'))
+    return render_template('vote.html', round=current_round, players=room.players)

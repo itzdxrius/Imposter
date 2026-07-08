@@ -2,8 +2,7 @@ import uuid
 from flask import Blueprint, render_template, session, redirect, url_for
 from app.models import Player, Room, User
 from app import db
-from app.game_logic import assign_word_for_round, assign_imposter_for_room, serialize_players
-from app.ws_server import broadcast_player_list
+from app.game_logic import assign_word_for_round, assign_imposter_for_room
 
 pages_bp = Blueprint('pages', __name__)
 
@@ -32,16 +31,15 @@ def lobby():
     user = get_current_user()
     if not user:
         return redirect(url_for('pages.signin'))
-    room = Room.query.filter_by(status='waiting').first()
+    room = get_current_room()
     if not room:
         room = Room(code="GLOB", status="waiting")
         db.session.add(room)
         db.session.commit()
-    else:
-        latest_round = room.rounds[-1] if room.rounds else None
-        if latest_round and latest_round.outcome is not None:
-            Player.query.filter_by(room_id=room.id).delete()
-            db.session.commit()
+    elif room.status == "finished":
+        Player.query.filter_by(room_id=room.id).delete()
+        room.status = "waiting"
+        db.session.commit()
 
     existing_player = Player.query.filter_by(user_id=user.id, room_id=room.id).first()
 
@@ -54,7 +52,6 @@ def lobby():
             )
         db.session.add(new_player)
         db.session.commit()
-        broadcast_player_list(room.id, serialize_players(room.id))
 
     current_players = Player.query.filter_by(room_id=room.id).all()
 

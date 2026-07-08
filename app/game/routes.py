@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify, session
 from app import db
 from app.models import Room, Player, Round, Vote
 from app.game_logic import (
-    assign_word_for_round, assign_imposter_for_room, determine_round_winner
+    assign_word_for_round, assign_imposter_for_room, determine_round_winner, serialize_players
 )
 
 game_bp = Blueprint("game", __name__)
@@ -42,9 +42,7 @@ def get_players(room_id):
     room = Room.query.get(room_id)
     if not room:
         return jsonify({"error": "Room not found"}), 404
-    return jsonify({
-        "players": [{"id": p.id, "name": p.name} for p in room.players]
-    }), 200
+    return jsonify({"players": serialize_players(room_id)}), 200
 
 
 @game_bp.route("/rounds/<int:round_id>/my_role", methods=["GET"])
@@ -97,7 +95,7 @@ def cast_votes(round_id):
             round_instance.outcome = result["outcome"]
             round_instance.winner_id = result["winner"]
             round_instance.imposter_id = result["imposter_id"]
-            round_instance.room.status = "waiting"
+            round_instance.room.status = "finished"
             db.session.commit()
 
     return jsonify({"message": "Vote cast successfully"}), 200

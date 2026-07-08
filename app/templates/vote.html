@@ -6,6 +6,24 @@
     </head>
     <body>
         <h1>Vote</h1>
+            <table id="lobby-player-list">
+            <thead>
+                <tr>
+                    <th>profile picture</th>
+                    <th>players</th>
+                    <th>vote</th>
+                </tr>
+            </thead>
+            <tbody id="player-list">
+                {% for player in players %}
+                    <tr>
+                        <td><img src={{ player.user.picture }} alt="Profile Picture"></td>
+                        <td>{{ player.name }}</td>
+                        <td><button class="vote-button">Vote</button></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
         <button id="results-button">View Results</button>
         <script src={{ url_for('static', filename='js/buttons.js')}}></script>
     </body>

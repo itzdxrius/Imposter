@@ -67,7 +67,7 @@ def profile():
 
 @pages_bp.route('/vote')
 def vote():
-    return render_template('vote.html')
+    return render_template('vote.html', players=Player.query.all())
 
 @pages_bp.route('/results')
 def results():

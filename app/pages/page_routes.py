@@ -26,7 +26,7 @@ def lobby():
 
 @pages_bp.route('/game')
 def game():
-    return render_template('game.html')
+    return render_template('game_template.html')
 
 @pages_bp.route('/results')
 def results():
@@ -38,3 +38,7 @@ def profile():
     if not user:
         return redirect(url_for('pages.signin'))
     return render_template('profile.html', user=user)
+
+@pages_bp.route('/vote')
+def vote():
+    return render_template('vote.html')

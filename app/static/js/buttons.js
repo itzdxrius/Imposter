@@ -6,6 +6,7 @@ const start_button = document.getElementById("start-button");
 const results_button = document.getElementById("results-button");
 const profile_button = document.getElementById("profile-button");
 const profile_back_button = document.getElementById("profile-back-button");
+const vote_button = document.getElementById("vote-button");
 if (login_button) {
 login_button.addEventListener("click", () => {
     window.location.href = "/auth/login";
@@ -46,5 +47,11 @@ profile_button.addEventListener("click", () => {
 if (profile_back_button) {
 profile_back_button.addEventListener("click", () => {
     window.location.href = "/home";
+});
+}
+
+if (vote_button) {
+vote_button.addEventListener("click", () => {
+    window.location.href = "/vote";
 });
 }

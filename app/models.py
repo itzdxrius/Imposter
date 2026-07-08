@@ -55,7 +55,7 @@ class Round(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   room_id = db.Column(db.Integer, db.ForeignKey('rooms.id'), nullable=False)
 
-  query = db.Column(db.String(100), nullable=False)
+  word = db.Column(db.String(100), nullable=False)
   reveal_image_url = db.Column(db.String(500), nullable=True)
   outcome = db.Column(db.String(20), nullable=True)
   winner_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=True)

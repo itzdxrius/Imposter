@@ -61,7 +61,7 @@ def my_role(round_id):
     if player.is_imposter:
         return jsonify({"is_imposter": True, "message": "You are the imposter!"}), 200
     else:
-        return jsonify({"is_imposter": False, "word": round_instance.query}), 200
+        return jsonify({"is_imposter": False, "word": round_instance.word}), 200
 
 
 @game_bp.route("/submit_votes/<int:round_id>", methods=["POST"])
@@ -109,11 +109,16 @@ def get_round_results(round_id):
     if not round_instance:
         return jsonify({"error": "Round not found"}), 404
 
+    winner = Player.query.get(round_instance.winner_id) if round_instance.winner_id else None
+    imposter = Player.query.get(round_instance.imposter_id) if round_instance.imposter_id else None
+
     return jsonify({
         "round_id": round_instance.id,
-        "query": round_instance.query,
+        "word": round_instance.word,
         "reveal_image_url": round_instance.reveal_image_url,
         "outcome": round_instance.outcome,
         "winner_id": round_instance.winner_id,
-        "imposter_id": round_instance.imposter_id
+        "winner_name": winner.name if winner else None,
+        "imposter_id": round_instance.imposter_id,
+        "imposter_name": imposter.name if imposter else None
     }), 200

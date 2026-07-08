@@ -6,8 +6,12 @@
     </head>
     <body>
         <h1>Whose the Imposter?</h1>
-        <p>Your word is:</p>
-        <p>{{word}}</p>
+        {% if is_imposter %}
+            <p>You are the imposter</p>
+        {% else %}
+            <p>Your word is:</p>
+            <p>{{word}}</p>
+        {% endif %}
         <button id="vote-button">Vote</button>
         <script src={{ url_for('static', filename='js/buttons.js')}}></script>
     </body>

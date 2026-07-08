@@ -2,6 +2,8 @@ import uuid
 from flask import Blueprint, render_template, session, redirect, url_for
 from app.models import Player, Room, User
 from app import db
+from app.game_logic import assign_word_for_round, assign_imposter_for_room, serialize_players
+from app.ws_server import broadcast_player_list
 
 pages_bp = Blueprint('pages', __name__)
 
@@ -10,6 +12,9 @@ def get_current_user():
     if user_id:
         return User.query.get(user_id)
     return None
+
+def get_current_room():
+    return Room.query.filter_by(code="GLOB").first()
 
 @pages_bp.route('/')
 def signin():
@@ -32,6 +37,11 @@ def lobby():
         room = Room(code="GLOB", status="waiting")
         db.session.add(room)
         db.session.commit()
+    else:
+        latest_round = room.rounds[-1] if room.rounds else None
+        if latest_round and latest_round.outcome is not None:
+            Player.query.filter_by(room_id=room.id).delete()
+            db.session.commit()
 
     existing_player = Player.query.filter_by(user_id=user.id, room_id=room.id).first()
 
@@ -44,19 +54,35 @@ def lobby():
             )
         db.session.add(new_player)
         db.session.commit()
+        broadcast_player_list(room.id, serialize_players(room.id))
 
     current_players = Player.query.filter_by(room_id=room.id).all()
 
-    return render_template('lobby.html', players=current_players)
+    return render_template('lobby.html', room=room, user=user, players=current_players)
 
 @pages_bp.route('/game')
 def game():
-    #if Player.is_imposter:
-    #    text = imposter  
-    #else: 
-    #   text = Room.rounds.query  # Replace with the actual word for the round
-    #return render_template('game_template.html', word=text) 
-    return render_template('game_template.html', word="placeholder") 
+    user = get_current_user()
+    if not user:
+        return redirect(url_for('pages.signin'))
+    room = get_current_room()
+    if not room:
+        return redirect(url_for('pages.lobby'))
+
+    if room.status != "in_progress":
+        new_round = assign_word_for_round(room)
+        db.session.add(new_round)
+        assign_imposter_for_room(room)
+        room.status = "in_progress"
+        db.session.commit()
+
+    current_round = room.rounds[-1]
+    player = Player.query.filter_by(user_id=user.id, room_id=room.id).first()
+    if not player:
+        return redirect(url_for('pages.lobby'))
+    if player.is_imposter:
+        return render_template('game_template.html', round=current_round, is_imposter=True)
+    return render_template('game_template.html', round=current_round, is_imposter=False, word=current_round.word)
 
 @pages_bp.route('/profile')
 def profile():
@@ -67,8 +93,21 @@ def profile():
 
 @pages_bp.route('/vote')
 def vote():
-    return render_template('vote.html')
+    user = get_current_user()
+    if not user:
+        return redirect(url_for('pages.signin'))
+    room = get_current_room()
+    if not room or not room.rounds:
+        return redirect(url_for('pages.lobby'))
+    current_round = room.rounds[-1]
+    player = Player.query.filter_by(user_id=user.id, room_id=room.id).first()
+    if not player:
+        return redirect(url_for('pages.lobby'))
+    return render_template('vote.html', round=current_round, players=room.players)
 
 @pages_bp.route('/results')
 def results():
-    return render_template('results.html')      
+    room = get_current_room()
+    if not room or not room.rounds:
+        return redirect(url_for('pages.lobby'))
+    return render_template('results.html', round=room.rounds[-1])

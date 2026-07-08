@@ -1,5 +1,4 @@
 import uuid
-
 from flask import Blueprint, render_template, session, redirect, url_for
 from app.models import Player, Room, User
 from app import db
@@ -52,11 +51,12 @@ def lobby():
 
 @pages_bp.route('/game')
 def game():
-    return render_template('game_template.html')
-
-@pages_bp.route('/results')
-def results():
-    return render_template('results.html')
+    #if Player.is_imposter:
+    #    text = imposter  
+    #else: 
+    #   text = Room.rounds.query  # Replace with the actual word for the round
+    #return render_template('game_template.html', word=text) 
+    return render_template('game_template.html', word="placeholder") 
 
 @pages_bp.route('/profile')
 def profile():
@@ -68,3 +68,7 @@ def profile():
 @pages_bp.route('/vote')
 def vote():
     return render_template('vote.html')
+
+@pages_bp.route('/results')
+def results():
+    return render_template('results.html')      

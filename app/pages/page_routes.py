@@ -37,10 +37,6 @@ def lobby():
         room = Room(code="GLOB", status="waiting")
         db.session.add(room)
         db.session.commit()
-    elif room.status == "finished":
-        Player.query.filter_by(room_id=room.id).delete()
-        room.status = "waiting"
-        db.session.commit()
 
     current_players = Player.query.filter_by(room_id=room.id).all()
 
@@ -56,6 +52,15 @@ def join_lobby():
     if not room:
         room = Room(code="GLOB", status="waiting")
         db.session.add(room)
+        db.session.commit()
+    elif room.status == "finished":
+        result = db.session.execute(
+            update(Room)
+            .where(Room.id == room.id, Room.status == "finished")
+            .values(status="waiting")
+        )
+        if result.rowcount:
+            Player.query.filter_by(room_id=room.id).delete()
         db.session.commit()
 
     existing_player = Player.query.filter_by(user_id=user.id, room_id=room.id).first()

@@ -55,7 +55,7 @@ def determine_winner(votes, imposter_id):
     if len(winners) > 1:
         return {"outcome": "tie", "winner": None, "imposter_id": imposter_id}
     voted_out = winners[0]
-    outcome = "imposter wins" if voted_out == imposter_id else "players win"
+    outcome = "players win" if voted_out == imposter_id else "imposter wins"
     return {"outcome": outcome, "winner": voted_out, "imposter_id": imposter_id}
 
 def assign_word_for_round(room):

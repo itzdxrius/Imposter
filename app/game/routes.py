@@ -107,16 +107,13 @@ def get_round_results(round_id):
     if not round_instance:
         return jsonify({"error": "Round not found"}), 404
 
-    winner = Player.query.get(round_instance.winner_id) if round_instance.winner_id else None
-    imposter = Player.query.get(round_instance.imposter_id) if round_instance.imposter_id else None
+    voted_out = Player.query.get(round_instance.winner_id) if round_instance.winner_id else None
 
     return jsonify({
         "round_id": round_instance.id,
         "word": round_instance.word,
         "reveal_image_url": round_instance.reveal_image_url,
         "outcome": round_instance.outcome,
-        "winner_id": round_instance.winner_id,
-        "winner_name": winner.name if winner else None,
-        "imposter_id": round_instance.imposter_id,
-        "imposter_name": imposter.name if imposter else None
+        "voted_out_id": round_instance.winner_id,
+        "voted_out_name": voted_out.name if voted_out else None
     }), 200

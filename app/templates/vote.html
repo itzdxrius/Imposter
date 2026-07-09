@@ -7,8 +7,8 @@
     </head>
     <body>
         <div class="mask-silhouette vote-mask">
-            <span class="mask-image"></span>
-            <span class="mask-image"></span>
+            <span class="mask-image mask-left"></span>
+            <span class="mask-image mask-right"></span>
         </div>
         <main class="page-content vote-content">
             <h1 class="game-title">Imposter</h1>
@@ -18,14 +18,14 @@
                 <tbody id="vote-list">
                     {% for player in players %}
                         <tr>
-                            <td class="player-picture"><img src="{{ player.user.picture }}" alt="Profile Picture"></td>
-                            <td>{{ player.name }}</td>
-                            <td><button class="vote-button" data-player-id="{{ player.id }}">Vote</button></td>
+                            <td class="section-subtitle"><img class="player-picture" src="{{ player.user.picture }}" alt="Profile Picture"></td>
+                            <td class="section-subtitle">{{ player.name }}</td>
+                            <td class="section-subtitle"><button class="primary-button vote-button" data-player-id="{{ player.id }}">Vote</button></td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
-            <button id="skip-button" class="primary-button">Vote to Skip</button>
+            <button id="skip-button" class="primary-button ">Vote to Skip</button>
             <p id="vote-status"></p>
         </main>
         <script>const ROUND_ID = "{{ round.id }}";</script>

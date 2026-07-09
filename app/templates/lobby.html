@@ -7,8 +7,8 @@
     </head>
     <body>
         <div class="mask-silhouette lobby-mask">
-            <span class="mask-image"></span>
-            <span class="mask-image"></span>
+            <span class="mask-image mask-left"></span>
+            <span class="mask-image mask-right"></span>
         </div>
         <main class="page-content lobby-content">
         <h1 class="game-title">Imposter</h1>
@@ -18,12 +18,12 @@
             <tbody id="player-list">
                 {% for player in players %}
                     <tr>
-                        <td>
+                        <td class="section-subtitle">
                             <img class="player-picture"
                             src="{{ player.user.picture }}" 
                             alt="Profile Picture">
                         </td>
-                        <td>{{ player.name }}</td>
+                        <td class="section-subtitle">{{ player.name }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

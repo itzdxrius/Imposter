@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;900&display=swap');
+
 body {
     margin: 0;
     background-color: #090909;
@@ -11,28 +13,70 @@ body {
     align-items: center;
     min-height: 100vh;
     text-align: center;
-    padding-top: 55px;
+    padding-top: 175px;
 }
 
 .game-title {
     font-family: "bebas neue", sans-serif; 
     font-size: 100px;
-    font-weight: 400;
+    font-weight: 100;
     color: #f5f5f5;
-    letter-spacing: 14px;
+    letter-spacing: 60px;
     text-transform: uppercase;
     margin: 0px;
+    padding-left: 60px;
 }
 
 .header-text{
-    font-family: "canva sans", sans-serif;
+    font-family: "Montserrat", Arial, sans-serif;
     font-size: 31.7px;
+    transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 0;
+}
+
+.section-subtitle {
+    font-family: "bebas neue", sans-serif;
+    font-size: 25px;
+    transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+.body-text {
+    font-family: "Montserrat", Arial, sans-serif;
+    font-size: 20px;
+    margin: 0;
+}
+
+.caption {
+    font-family: "bebas neue", sans-serif;
+    font-size: 17px;
+    transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0;
+}
+
+.primary-button {
+    font-family: "Montserrat", Arial, sans-serif;
+    font-size: 31.7px;
+    font-weight: 600;
+    transform: uppercase;
+    letter-spacing: 2px;
+    padding: 10px 20px;
+    background-color: #b11226;
+    color: #f5f5f5;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 50px;
+    opacity: .6;
 }
 
 .mask-image {
     display: block;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     background-color: #b11226;
     opacity: 0.37;
     mask-image: url("../images/mask-silhouette.png");
@@ -56,9 +100,34 @@ body {
 .mask-silhouette {
    display: flex;
    align-items: center;
-   gap: 600px;
+   gap: 700px;
    position: absolute;
+   top: 100px;
    left: 50%;
    transform: translateX(-50%);
 }
 
+.player-table {
+    background-color: #141414;
+    border-collapse: collapse;
+}
+
+.player-table tr {
+    border-bottom: 3px solid #b11226;
+}
+
+.player-table tr:last-child {
+    border-bottom: none;
+}
+
+.player-table td {
+    padding: 10px 20px;
+    vertical-align: middle;
+}
+
+.player-picture {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}

@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;900&display=swap');
 
+:root {
+    --imposter-red: rgba(177, 18, 38, 0.37);
+}
+
 body {
     margin: 0;
     background-color: #090909;
@@ -14,6 +18,7 @@ body {
     min-height: 100vh;
     text-align: center;
     padding-top: 175px;
+    box-sizing: border-box;
 }
 
 .game-title {
@@ -61,7 +66,6 @@ body {
     font-family: "Montserrat", Arial, sans-serif;
     font-size: 31.7px;
     font-weight: 600;
-    transform: uppercase;
     letter-spacing: 2px;
     padding: 10px 20px;
     background-color: #b11226;
@@ -77,8 +81,7 @@ body {
     display: block;
     width: 150px;
     height: 150px;
-    background-color: #b11226;
-    opacity: 0.37;
+    background-color: var(--imposter-red);
     mask-image: url("../images/mask-silhouette.png");
     mask-repeat: no-repeat;
     mask-size: contain;
@@ -99,6 +102,7 @@ body {
 
 .mask-silhouette {
    display: flex;
+   position: absolute;
    align-items: center;
    gap: 700px;
    position: absolute;

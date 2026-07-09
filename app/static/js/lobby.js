@@ -12,10 +12,12 @@ function rebuildPlayerTable(players) {
         const img = document.createElement("img");
         img.src = player.picture || "";
         img.alt = "Profile Picture";
+        img.classList.add("player-picture");
         pictureCell.appendChild(img);
 
         const nameCell = document.createElement("td");
         nameCell.textContent = player.name;
+        nameCell.classList.add("section-subtitle");
 
         row.appendChild(pictureCell);
         row.appendChild(nameCell);

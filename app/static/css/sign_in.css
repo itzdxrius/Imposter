@@ -1,19 +1,63 @@
 
-
-.normal-silhouette img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 10px;
-    height: 10px;
+.signin-subtitle {
+    color: var(--imposter-red);
+    margin-top: 10px;
 }
+
+.signin-description {
+    color: #bdbdbd;
+    margin-top: 75px;
+    max-width: 380px;
+    line-height: 1.5;
+}
+
+#login-button {
+    margin-top: 75px;
+}
+
+.signin-caption {
+    color: var(--imposter-red);
+    margin-top: 20px;
+}
+
+.person-silhouette {
+    display: block;
+    width: 225px;
+    height: 225px;
+    mask-image: url("../images/person-silhouette.png");
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    mask-position: center;
+    -webkit-mask-image: url("../images/person-silhouette.png");
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    -webkit-mask-position: center;
+}
+
+.normal-person {
+    background-color: #3a3a3a;
+    opacity: .3;
+}
+
+.normal-person-group {
+    bottom: 20px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 700px;
+}
+
 
 .imposter-silhouette {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 10px;
-    height: 10px;
+    background-color: var(--imposter-red);
+    right: 170px;
+    top: 300px;
 }
+
+
+
+
 
 

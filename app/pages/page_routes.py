@@ -1,5 +1,6 @@
 import uuid
 from flask import Blueprint, render_template, session, redirect, url_for, jsonify
+from sqlalchemy import update
 from app.models import Player, Room, User
 from app import db
 from app.game_logic import assign_word_for_round, assign_imposter_for_room
@@ -80,10 +81,15 @@ def game():
         return redirect(url_for('pages.lobby'))
 
     if room.status != "in_progress":
-        new_round = assign_word_for_round(room)
-        db.session.add(new_round)
-        assign_imposter_for_room(room)
-        room.status = "in_progress"
+        result = db.session.execute(
+            update(Room)
+            .where(Room.id == room.id, Room.status != "in_progress")
+            .values(status="in_progress")
+        )
+        if result.rowcount:
+            new_round = assign_word_for_round(room)
+            db.session.add(new_round)
+            assign_imposter_for_room(room)
         db.session.commit()
 
     current_round = room.rounds[-1]

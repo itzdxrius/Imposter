@@ -23,6 +23,10 @@
             </tbody>
         </table>
         <button id="start-button">Start Game</button>
+        <script>
+            const ROOM_ID = "{{ room.id }}";
+        </script>
+        <script src={{ url_for('static', filename='js/lobby.js')}}></script>
         <script src={{ url_for('static', filename='js/buttons.js')}}></script>
     </body>
 </html>

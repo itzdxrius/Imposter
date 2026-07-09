@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Imposter</title>
+        <title>Imposter/vote</title>
         <link rel="stylesheet" href={{ url_for('static', filename='css/vote.css')}}>
     </head>
     <body>
-        <h1>Vote</h1>
-            <table id="lobby-player-list">
+        <h1>Who's the Imposter?</h1>
+        <table>
             <thead>
                 <tr>
                     <th>profile picture</th>
                     <th>players</th>
-                    <th>vote</th>
+                    <th></th>
                 </tr>
             </thead>
-            <tbody id="player-list">
+            <tbody id="vote-list">
                 {% for player in players %}
                     <tr>
                         <td><img src={{ player.user.picture }} alt="Profile Picture"></td>
                         <td>{{ player.name }}</td>
-                        <td><button class="vote-button">Vote</button></td>
+                        <td><button class="vote-button" data-player-id="{{ player.id }}">Vote</button></td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <button id="results-button">View Results</button>
-        <script src={{ url_for('static', filename='js/buttons.js')}}></script>
+        <button id="skip-button">Vote to Skip</button>
+        <p id="vote-status"></p>
+        <script>const ROUND_ID = "{{ round.id }}";</script>
+        <script src={{ url_for('static', filename='js/vote.js')}}></script>
     </body>
 </html>

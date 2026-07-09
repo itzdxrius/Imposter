@@ -6,8 +6,11 @@
     </head>
     <body>
         <h1>Game Results</h1>
+        <div id="results-content">Loading results...</div>
         <button id="replay-button">Play Again</button>
         <button id="home-button">Home</button>
+        <script>const ROUND_ID = "{{ round.id }}";</script>
+        <script src={{ url_for('static', filename='js/results.js')}}></script>
         <script src={{ url_for('static', filename='js/buttons.js')}}></script>
     </body>
 </html>

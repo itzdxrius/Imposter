@@ -2,22 +2,23 @@
 <html lang="en">
     <head>
         <title>Imposter/signin</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css')}}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/sign_in.css')}}">
     </head>
     <body>
         <div class="mask-silhouette signin-mask">
-            <img src="{{ url_for('static', filename='images/mask-silhouette.png')}}" alt="">
-            <img src="{{ url_for('static', filename='images/mask-silhouette.png')}}" alt="">
+            <span class="mask-image mask-left" ></span>
+            <span class="mask-image mask-right"></span>
         </div>
-        <div class="normal-silhouette">
-            <img src="{{ url_for('static', filename='images/person-silhouette.png')}}" alt="">
-            <img src="{{ url_for('static', filename='images/person-silhouette.png')}}" alt="">
+        <div class="normal-person-group">
+            <span class="person-silhouette normal-person"></span>
+            <span class="person-silhouette normal-person"></span>
         </div>
-       <img class="imposter-silhouette" src="{{ url_for('static', filename='images/person-silhouette.png')}}" alt="">
+        <span class="person-silhouette imposter-silhouette"></span>
         <main class="page-content signin-content">
         <h1 class="game-title">Imposter</h1>
         <p class="section-subtitle signin-subtitle">Can you fool your friends?</p>
-        <p class="body signin-description">
+        <p class="body-text signin-description">
             Everyone gets the secret word except one person. Ask questions, 
             listen carefully, and blend in with the group. Find the Imposter before 
             they fool everyone and escape the vote.

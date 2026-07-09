@@ -1,5 +1,5 @@
 import uuid
-from flask import Blueprint, render_template, session, redirect, url_for
+from flask import Blueprint, render_template, session, redirect, url_for, jsonify
 from app.models import Player, Room, User
 from app import db
 from app.game_logic import assign_word_for_round, assign_imposter_for_room
@@ -41,8 +41,23 @@ def lobby():
         room.status = "waiting"
         db.session.commit()
 
-    existing_player = Player.query.filter_by(user_id=user.id, room_id=room.id).first()
+    current_players = Player.query.filter_by(room_id=room.id).all()
 
+    return render_template('lobby.html', room=room, user=user, players=current_players)
+
+@pages_bp.route('/join_lobby', methods=['POST'])
+def join_lobby():
+    user = get_current_user()
+    if not user:
+        return jsonify({"error": "Not signed in"}), 401
+
+    room = get_current_room()
+    if not room:
+        room = Room(code="GLOB", status="waiting")
+        db.session.add(room)
+        db.session.commit()
+
+    existing_player = Player.query.filter_by(user_id=user.id, room_id=room.id).first()
     if not existing_player:
         new_player = Player(
             room_id=room.id,
@@ -53,9 +68,7 @@ def lobby():
         db.session.add(new_player)
         db.session.commit()
 
-    current_players = Player.query.filter_by(room_id=room.id).all()
-
-    return render_template('lobby.html', room=room, user=user, players=current_players)
+    return jsonify({"joined": True}), 200
 
 @pages_bp.route('/game')
 def game():

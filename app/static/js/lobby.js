@@ -1,5 +1,9 @@
 function rebuildPlayerTable(players) {
     const playerList = document.getElementById("player-list");
+    const playerCount = document.getElementById("player-count");
+    if (playerCount) {
+        playerCount.textContent = `${players.length} players waiting`;
+    }
     playerList.innerHTML = "";
     players.forEach((player) => {
         const row = document.createElement("tr");

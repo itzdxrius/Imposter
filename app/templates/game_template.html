@@ -5,14 +5,27 @@
         <link rel="stylesheet" href={{ url_for('static', filename='css/game.css')}}>
     </head>
     <body>
-        <h1>Whose the Imposter?</h1>
+        <main class="page-content game-content">
+        <h1 class="game-title">Imposter</h1>
+        <div class="word-display">
         {% if is_imposter %}
-            <p>You are the imposter</p>
+            <p class="section-subtitle game-subtitle">You are the </p>
+            <p class="header-text">imposter</p>
         {% else %}
-            <p>Your word is:</p>
-            <p>{{word}}</p>
+            <p class="section-subtitle game-subtitle">Your word is:</p>
+            <p class="header-text">{{word}}</p>
         {% endif %}
-        <button id="vote-button">Vote</button>
+        </div>
+        <div class="game-visual">
+            <img class="game-player player-one" src="{{ url_for('static', filename='images/person-silhouette.png')}}" alt="">
+            <img class="game-player player-two" src="{{ url_for('static', filename='images/person-silhouette.png')}}" alt="">
+            <img class="game-player player-three" src="{{ url_for('static', filename='images/person-silhouette.png')}}" alt="">
+            <img class="game-player player-four" src="{{ url_for('static', filename='images/person-silhouette.png')}}" alt="">
+            <img class="game-player player-five" src="{{ url_for('static', filename='images/person-silhouette.png')}}" alt="">
+            <img class="game-globe" src="{{ url_for('static', filename='images/sphere-wireframe.svg.webp')}}">
+        </div>
+        <button id="vote-button" class="primary-button">Vote</button>
+        </main>
         <script src={{ url_for('static', filename='js/buttons.js')}}></script>
     </body>
 </html>

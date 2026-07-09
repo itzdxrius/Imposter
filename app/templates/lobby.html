@@ -2,31 +2,37 @@
 <html lang="en">
     <head>
         <title>Imposter/lobby</title>
-        <link rel="stylesheet" href={{ url_for('static', filename='css/lobby.css')}}>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/lobby.css')}}">
     </head>
     <body>
-        <h1>Imposter</h1>
-        <table id="lobby-player-list">
-            <thead>
-                <tr>
-                    <th>profile picture</th>
-                    <th>players</th>
-                </tr>
-            </thead>
+        <div class="mask-silhouette lobby-mask">
+            <img src="{{ url_for('static', filename='images/mask-silhouette.png')}}" alt="">
+            <img src="{{ url_for('static', filename='images/mask-silhouette.png')}}" alt="">
+        </div>
+        <main class="page-content lobby-content">
+        <h1 class="game-title">Imposter</h1>
+        <p class="section-subtitle lobby-subtitle">Who's here?</p>
+        <p class="header-text lobby-header"> {{players|length}} players waiting</p>
+        <table id="lobby-player-list" class="player-table lobby-table">
             <tbody id="player-list">
                 {% for player in players %}
                     <tr>
-                        <td><img src={{ player.user.picture }} alt="Profile Picture"></td>
+                        <td>
+                            <img class="player-picture"
+                            src="{{ player.user.picture }}" 
+                            alt="Profile Picture">
+                        </td>
                         <td>{{ player.name }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <button id="start-button">Start Game</button>
+        <button id="start-button" class="primary-button">Start Game</button>
+        </main>
         <script>
             const ROOM_ID = "{{ room.id }}";
         </script>
-        <script src={{ url_for('static', filename='js/lobby.js')}}></script>
-        <script src={{ url_for('static', filename='js/buttons.js')}}></script>
+        <script src="{{ url_for('static', filename='js/lobby.js')}}"></script>
+        <script src="{{ url_for('static', filename='js/buttons.js')}}"></script>
     </body>
 </html>

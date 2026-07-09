@@ -12,10 +12,14 @@ login_button.addEventListener("click", () => {
     window.location.href = "/auth/login";
 });
 }
+function joinLobbyThenNavigate() {
+    fetch("/join_lobby", { method: "POST" }).then(() => {
+        window.location.href = "/lobby";
+    });
+}
+
 if (join_button) {
-join_button.addEventListener("click", () => {
-    window.location.href = "/lobby";
-});
+join_button.addEventListener("click", joinLobbyThenNavigate);
 }
 if (start_button) {
 start_button.addEventListener("click", () => {
@@ -28,9 +32,7 @@ results_button.addEventListener("click", () => {
 });
 }
 if (replay_button) {
-replay_button.addEventListener("click", () => {
-    window.location.href = "/lobby";
-});
+replay_button.addEventListener("click", joinLobbyThenNavigate);
 }
 if (home_button) {
 home_button.addEventListener("click", () => {

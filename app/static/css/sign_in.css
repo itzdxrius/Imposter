@@ -1,12 +1,19 @@
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+
+
+.normal-silhouette img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
 }
 
-img {
-    width: 100px;
-    height: 100px;
+.imposter-silhouette {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
 }
+
+

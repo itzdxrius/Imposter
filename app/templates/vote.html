@@ -2,12 +2,13 @@
 <html lang="en">
     <head>
         <title>Imposter/vote</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/vote.css')}}"">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/vote.css')}}">
     </head>
     <body>
         <div class="mask-silhouette vote-mask">
-            <img src="{{ url_for('static', filename='images/mask-silhouette.png')}}" alt="">
-            <img src="{{ url_for('static', filename='images/mask-silhouette.png')}}" alt="">
+            <span class="mask-image"></span>
+            <span class="mask-image"></span>
         </div>
         <main class="page-content vote-content">
             <h1 class="game-title">Imposter</h1>

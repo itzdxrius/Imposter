@@ -1,3 +1,7 @@
 body {
     display: flex;
 }
+
+.game-visual img {
+    width: 50px;
+}

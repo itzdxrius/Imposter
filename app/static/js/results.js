@@ -1,8 +1,8 @@
 const resultsContent = document.getElementById("results-content");
 
 const OUTCOME_MESSAGES = {
-    "imposter wins": "The imposter got away with it!",
-    "players win": "The players caught the imposter!",
+    "imposter wins": "Imposter Wins!",
+    "players win": "Imposter Found!",
     tie: "It was a tie — no one was voted out.",
     "everyone skipped": "Everyone skipped — no one was voted out.",
     "No votes cast": "No votes were cast.",

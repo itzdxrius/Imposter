@@ -58,8 +58,8 @@ class Round(db.Model):
   word = db.Column(db.String(100), nullable=False)
   reveal_image_url = db.Column(db.String(500), nullable=True)
   outcome = db.Column(db.String(20), nullable=True)
-  winner_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=True)
-  imposter_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=True)
+  winner_id = db.Column(db.Integer, db.ForeignKey('players.id', ondelete='SET NULL'), nullable=True)
+  imposter_id = db.Column(db.Integer, db.ForeignKey('players.id', ondelete='SET NULL'), nullable=True)
 
   def __repr__(self):
     return f"<Round in Room {self.room_id} - Query: {self.query}>"
@@ -68,8 +68,8 @@ class Vote(db.Model):
     __tablename__ = 'votes'
     id = db.Column(db.Integer, primary_key=True)
     round_id = db.Column(db.Integer, db.ForeignKey('rounds.id'), nullable=False)
-    voter_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
-    voted_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=True)  # Can be null if skipped
+    voter_id = db.Column(db.Integer, db.ForeignKey('players.id', ondelete='CASCADE'), nullable=False)
+    voted_id = db.Column(db.Integer, db.ForeignKey('players.id', ondelete='SET NULL'), nullable=True)  # Can be null if skipped
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     round = db.relationship('Round', backref='votes')

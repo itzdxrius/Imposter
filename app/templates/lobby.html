@@ -13,7 +13,7 @@
         <main class="page-content lobby-content">
         <h1 class="game-title">Imposter</h1>
         <p class="section-subtitle lobby-subtitle">Who's here?</p>
-        <p class="header-text lobby-header"> {{players|length}} players waiting</p>
+        <p class="header-text lobby-header" id="player-count"> {{players|length}} players waiting</p>
         <table id="lobby-player-list" class="player-table lobby-table">
             <tbody id="player-list">
                 {% for player in players %}

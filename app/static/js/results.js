@@ -29,19 +29,19 @@ async function loadResults() {
 
     const wordEl = document.createElement("p");
     wordEl.textContent = `The word was: ${data.word}`;
-    wordEl.classList.add("body-text, result-word");
+    wordEl.classList.add("body-text", "result-word");
     resultsContent.appendChild(wordEl);
 
     if (data.voted_out_name) {
         const votedOutEl = document.createElement("p");
         votedOutEl.textContent = `${data.voted_out_name} was voted out.`;
-        votedOutEl.classList.add("body-text, result-voted-out");
+        votedOutEl.classList.add("body-text", "result-voted-out");
         resultsContent.appendChild(votedOutEl);
     }
 
     const outcomeEl = document.createElement("p");
     outcomeEl.textContent = OUTCOME_MESSAGES[data.outcome] || data.outcome;
-    outcomeEl.classList.add("body-text, result-outcome");
+    outcomeEl.classList.add("body-text", "result-outcome");
     resultsContent.appendChild(outcomeEl);
 }
 

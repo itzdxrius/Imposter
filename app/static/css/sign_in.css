@@ -1,13 +1,13 @@
 
 .signin-subtitle {
-    color: var(--imposter-red);
+    color: var(--imposter-red-txt);
     margin-top: 10px;
 }
 
 .signin-description {
     color: #bdbdbd;
     margin-top: 75px;
-    max-width: 380px;
+    max-width: 370px;
     line-height: 1.5;
 }
 
@@ -16,7 +16,7 @@
 }
 
 .signin-caption {
-    color: var(--imposter-red);
+    color: var(--imposter-red-txt);
     margin-top: 20px;
 }
 

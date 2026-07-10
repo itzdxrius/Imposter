@@ -10,15 +10,15 @@
             <img class="player-picture" src="{{ user.picture }}" alt="Profile Icon">
         </button>
         <main class="page-content home-content">
-        <h1 class="game-title">Imposter</h1>
-        <p class="section-subtitle home-subtitle">Welcome Back, <span class="user-name">{{ user.name }}</span></p>
-        <div class="divider">
-            <span class="divider-line"></span>
-            <p> Trust, but at what cost </p>
-            <span class="divider-line"></span>
-        </div>
-        <button id="join-button" class="primary-button">Join Game</button>
-        <p class="caption home-caption">One of you is lying...</p>
+            <h1 class="game-title">Imposter</h1>
+            <p class="section-subtitle home-subtitle">Welcome Back, <span class="user-name-home">{{ user.name }}</span></p>
+            <div class="divider">
+                <span class="divider-line"></span>
+                <p class="divider-txt header-text"> Trust, but at what cost </p>
+                <span class="divider-line"></span>
+            </div>
+            <button id="join-button" class="primary-button">Join Game</button>
+            <p class="caption home-caption">One of you is lying...</p>
         </main>
         <img class="red-fog" src="{{ url_for('static', filename='images/red-fog.avif')}}" alt="">
         <script src="{{ url_for('static', filename='js/buttons.js')}}"></script>

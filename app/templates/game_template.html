@@ -14,16 +14,16 @@
             <p class="header-text">imposter</p>
         {% else %}
             <p class="section-subtitle game-subtitle">Your word is:</p>
-            <p class="header-text">{{word}}</p>
+            <p class="header-text game-word">{{word}}</p>
         {% endif %}
         </div>
         <div class="game-visual">
-            <img class="game-player player-one" src="{{ url_for('static', filename='images/person-silhouette.png')}}" alt="">
-            <img class="game-player player-two" src="{{ url_for('static', filename='images/person-silhouette.png')}}" alt="">
-            <img class="game-player player-three" src="{{ url_for('static', filename='images/person-silhouette.png')}}" alt="">
-            <img class="game-player player-four" src="{{ url_for('static', filename='images/person-silhouette.png')}}" alt="">
-            <img class="game-player player-five" src="{{ url_for('static', filename='images/person-silhouette.png')}}" alt="">
-            <img class="game-globe" src="{{ url_for('static', filename='images/sphere-wireframe.svg.webp')}}">
+            <span class="game-player player-one"></span>
+            <span class="game-player player-two"></span>
+            <span class="game-player player-three"></span>
+            <span class="game-player player-four"></span>
+            <span class="game-player player-five"></span>
+            <span class="game-globe"></span>
         </div>
         <button id="vote-button" class="primary-button">Vote</button>
         </main>

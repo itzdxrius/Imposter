@@ -1,0 +1,71 @@
+#profile-back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 55px;
+    height: 55px;
+    padding: 0;
+    background-color: #b11226;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#profile-back-button img {
+    display: block;
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+.profile-picture {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-subtitle {
+    margin-top: 20px;
+    color: #bdbdbd;
+}
+
+.profile-table {
+    width: 750px;
+    height: 300px;
+    margin-top: 30px;
+    padding-top: 45px;
+    padding-bottom: 45px;
+    background-color: #141414;
+    border-collapse: separate;
+    border-spacing: 0 12px;
+    box-sizing: border-box;
+}
+
+
+
+.profile-table th,
+.profile-table td {
+    vertical-align: middle;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 25px;
+    letter-spacing: 2px;
+}
+
+.profile-table th {
+    width: 50%;
+    text-align: right;
+    padding-right: 40px;
+    color: var(--imposter-red-txt);
+    text-transform: uppercase;
+}
+
+.profile-table td {
+    width: 50%;
+    text-align: left;
+    color: #f5f5f5;
+}

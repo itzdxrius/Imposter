@@ -12,21 +12,29 @@
         </div>
         <main class="page-content vote-content">
             <h1 class="game-title">Imposter</h1>
-            <p class="section-subtitle vote-subtitle">Who's Lying?</p>
-            <p class="header-text vote-header"> Cast your vote</p>
-            <table class="player-table vote-table">
-                <tbody id="vote-list">
-                    {% for player in players %}
-                        <tr>
-                            <td class="section-subtitle"><img class="player-picture" src="{{ player.user.picture }}" alt="Profile Picture"></td>
-                            <td class="section-subtitle">{{ player.name }}</td>
-                            <td class="section-subtitle"><button class="primary-button vote-button" data-player-id="{{ player.id }}">Vote</button></td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            <button id="skip-button" class="primary-button ">Vote to Skip</button>
-            <p id="vote-status"></p>
+            <div class="table-page-content">
+                <div class="table-page-heading">
+                    <p class="section-subtitle vote-subtitle">Who's Lying?</p>
+                    <p class="header-text vote-header"> Cast your vote</p>
+                </div>
+                <div class="player-table-area">
+                    <table class="player-table vote-table">
+                        <tbody id="vote-list">
+                            {% for player in players %}
+                                <tr>
+                                    <td><img class="player-picture" src="{{ player.user.picture }}" alt="Profile Picture"></td>
+                                    <td class="section-subtitle">{{ player.name }}</td>
+                                    <td><button class="primary-button vote-button" data-player-id="{{ player.id }}">Vote</button></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-bottom-content">
+                    <button id="skip-button" class="primary-button ">Vote to Skip</button>
+                <p id="vote-status"></p>
+                </div>
+            </div>
         </main>
         <script>const ROUND_ID = "{{ round.id }}";</script>
         <script src="{{ url_for('static', filename='js/vote.js')}}"></script>

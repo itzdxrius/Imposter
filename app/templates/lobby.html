@@ -11,24 +11,32 @@
             <span class="mask-image mask-right"></span>
         </div>
         <main class="page-content lobby-content">
-        <h1 class="game-title">Imposter</h1>
-        <p class="section-subtitle lobby-subtitle">Who's here?</p>
-        <p class="header-text lobby-header" id="player-count"> {{players|length}} players waiting</p>
-        <table id="lobby-player-list" class="player-table lobby-table">
-            <tbody id="player-list">
-                {% for player in players %}
-                    <tr>
-                        <td >
-                            <img class="player-picture"
-                            src="{{ player.user.picture }}" 
-                            alt ="Profile Picture">
-                        </td>
-                        <td class="section-subtitle">{{ player.name }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <button id="start-button" class="primary-button">Start Game</button>
+            <h1 class="game-title">Imposter</h1>
+            <div class="table-page-content">
+                <div class="table-page-heading">
+                    <p class="section-subtitle lobby-subtitle">Who's here?</p>
+                    <p class="header-text lobby-header" id="player-count"> {{players|length}} players waiting</p>
+                </div>
+                <div class="player-table-area">
+                    <table id="lobby-player-list" class="player-table lobby-table">
+                        <tbody id="player-list">
+                            {% for player in players %}
+                                <tr>
+                                    <td >
+                                        <img class="player-picture"
+                                        src="{{ player.user.picture }}" 
+                                        alt ="Profile Picture">
+                                    </td>
+                                    <td class="section-subtitle">{{ player.name }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-bottom-content">
+                    <button id="start-button" class="primary-button">Start Game</button>
+                </div>
+            </div>
         </main>
         <script>
             const ROOM_ID = "{{ room.id }}";

@@ -1,4 +1,87 @@
+.game-player {
+    display: block;
+    width: 80px;
+    height: 80px;
+    background-color: #8b8b8b;
+    opacity: .37;
+    mask-image: url("../images/person-silhouette.png");
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    mask-position: center;
+    -webkit-mask-image: url("../images/person-silhouette.png");
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    -webkit-mask-position: center;
+}
 
-.game-visual img {
-    width: 50px;
+.game-globe {
+    display: block;
+    width: 130px;
+    height: 130px;
+    background-color: var(--imposter-red-txt);
+    mask-image: url("../images/sphere-wireframe.svg.webp");
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    mask-position: center;
+    -webkit-mask-image: url("../images/sphere-wireframe.svg.webp");
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    -webkit-mask-position: center;
+    top: 100px; 
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.game-visual {
+    position: relative;
+    width: 500px;
+    height: 420px;
+}
+
+.game-player, .game-globe {
+    position: absolute;
+}
+
+.player-one {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.player-two {
+    top: 80px;
+    left: 20%;
+    transform: translateX(-50%);
+}
+
+.player-three {
+    top: 80px;
+    left: 80%;
+    transform: translateX(-50%);
+}
+
+.player-four {
+    top: 200px;
+    left: 30%;
+    transform: translateX(-50%);
+}
+
+.player-five {
+    top: 200px;
+    left: 70%;
+    transform: translateX(-50%);
+}
+
+.game-word {
+    background-color: #3a3a3a;
+    padding: 4px 10px;
+    color: #bdbdbd;
+}
+
+.game-subtitle {
+    color: var(--imposter-red-txt)
+}
+
+#vote-button {
+    transform: translateY(-110px)
 }

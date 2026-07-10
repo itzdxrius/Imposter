@@ -1,0 +1,30 @@
+.lobby-table tr {
+    display: flex;
+    align-items: center;
+}
+
+.lobby-table td:first-child {
+    margin-left: 40px;
+}
+
+.lobby-table td:nth-child(2) {
+    margin-left: 30px;
+    text-align: left;
+}
+
+.lobby-header {
+    text-align: left;
+    margin-left: 350px;
+}
+
+.table-bottom-content{
+    bottom: 60px;
+}
+
+.lobby-subtitle {
+    color: var(--imposter-red-txt);
+}
+
+.lobby-header {
+    color: #bdbdbd;
+}

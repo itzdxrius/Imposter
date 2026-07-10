@@ -1,4 +1,3 @@
-
 #profile-button {
     position: absolute;
     top: 20px;
@@ -8,8 +7,59 @@
     border-radius: 50%;
     background: none;
     cursor: pointer;
+    z-index: 10;
 }
 
 .home-profile-button .player-picture {
     display: block;
+}
+
+.home-subtitle {
+    margin-top: 20px;
+    color: #bdbdbd;
+}
+
+.user-name-home {
+    color: var(--imposter-red-txt)
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+    gap: 20px;
+}
+
+.divider-txt {
+    color: var(--imposter-red-txt);
+}
+
+.divider-line {
+    display: block;
+    width: 100px; 
+    height: 2px;
+    background-color: #bdbdbd;
+
+}
+
+#join-button {
+    margin-top: 30px;
+}
+
+.home-caption {
+    margin-top: 20px;
+    color: #bdbdbd;
+}
+
+.red-fog {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 0;
+}
+
+.home-content {
+    z-index: 1;
+    position: relative;
 }

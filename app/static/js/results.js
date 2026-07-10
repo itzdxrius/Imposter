@@ -23,21 +23,25 @@ async function loadResults() {
         const img = document.createElement("img");
         img.src = data.reveal_image_url;
         img.alt = data.word;
+        img.classList.add("result-reveal-image");
         resultsContent.appendChild(img);
     }
 
     const wordEl = document.createElement("p");
     wordEl.textContent = `The word was: ${data.word}`;
+    wordEl.classList.add("body-text, result-word");
     resultsContent.appendChild(wordEl);
 
     if (data.voted_out_name) {
         const votedOutEl = document.createElement("p");
         votedOutEl.textContent = `${data.voted_out_name} was voted out.`;
+        votedOutEl.classList.add("body-text, result-voted-out");
         resultsContent.appendChild(votedOutEl);
     }
 
     const outcomeEl = document.createElement("p");
     outcomeEl.textContent = OUTCOME_MESSAGES[data.outcome] || data.outcome;
+    outcomeEl.classList.add("body-text, result-outcome");
     resultsContent.appendChild(outcomeEl);
 }
 

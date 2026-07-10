@@ -27,7 +27,7 @@ class Room(db.Model):
   created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
   players = db.relationship('Player', backref='room', lazy=True, cascade="all, delete-orphan")
-  rounds = db.relationship('Round', backref='room', lazy=True, cascade="all, delete-orphan")
+  rounds = db.relationship('Round', backref='room', lazy=True, cascade="all, delete-orphan", order_by='Round.id')
 
   def __repr__(self):
     return f"<Room{self.code}- {self.status}>"

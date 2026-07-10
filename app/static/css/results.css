@@ -2,12 +2,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px
+    margin-top: 15px
 }
 
 .result-reveal-image {
     display: block;
-    width: 460px;
+    width: 350px;
     height: 360px;
     object-fit: cover;
 }
@@ -20,7 +20,7 @@
 }
 
 .result-word {
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 .result-voted-out {
